@@ -39,6 +39,7 @@ class JokesController < ApplicationController
       count = Joke.find_by_category(params[:category]).count
       if count.zero?
         render json: { error: "No jokes of that category" }, status: 400
+      elsif Joke.find_by_category(params[:category])
       end
     elsif @joke = Joke.all.sample
       render json: @joke, status: 200
